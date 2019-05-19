@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
+import PropTypes from "prop-types";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
-  const custom = {
-    id: `id-${k}`,
-    content: `Quote ${k}`
-  };
+const generateDNDArray = fields => {
+  return fields.map((v, i) => {
+    return {
+      id: `id-${i}`,
+      content: `${v.name}`
+    };
+  });
+};
 
-  return custom;
-});
-
-const grid = 8;
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -20,38 +20,62 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-const QuoteItem = styled.div`
-  width: 200px;
-  border: 1px solid grey;
-  margin-bottom: ${grid}px;
-  background-color: lightblue;
-  padding: ${grid}px;
-`;
+/**
+ * Moves an item from one list to another list.
+ */
+const move = (source, destination, droppableSource, droppableDestination) => {
+  const sourceClone = Array.from(source);
+  const destClone = Array.from(destination);
+  const [removed] = sourceClone.splice(droppableSource.index, 1);
 
-function Quote({ quote, index }) {
+  destClone.splice(droppableDestination.index, 0, removed);
+
+  const result = {};
+  result[droppableSource.droppableId] = sourceClone;
+  result[droppableDestination.droppableId] = destClone;
+
+  return result;
+};
+
+function Fields({ field, index }) {
+  const DraggableItem = styled.div`
+    padding: 0 0 0 2rem;
+  `;
+  const grid = 8;
+  const FieldItem = styled.div`
+    width: 200px;
+    border: 1px solid grey;
+    margin-bottom: ${grid}px;
+    background-color: lightblue;
+    padding: ${grid}px;
+  `;
+
   return (
-    <Draggable draggableId={quote.id} index={index}>
-      {provided => (
-        <QuoteItem
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
-          {quote.content}
-        </QuoteItem>
-      )}
-    </Draggable>
+    <DraggableItem>
+      <Draggable draggableId={field.id} index={index}>
+        {provided => (
+          <FieldItem
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            <h4>{field.content}</h4>
+          </FieldItem>
+        )}
+      </Draggable>
+    </DraggableItem>
   );
 }
 
-const QuoteList = React.memo(function QuoteList({ quotes }) {
-  return quotes.map((quote, index) => (
-    <Quote quote={quote} index={index} key={quote.id} />
-  ));
+const FieldList = React.memo(function QuoteList({ fields: fields }) {
+  return fields.map((field, index) => {
+    return <Fields field={field} index={index} key={field.id} />;
+  });
 });
 
- function SimpleDragAndDrop() {
-  const [state, setState] = useState({ quotes: initial });
+function SimpleDragAndDrop({ fields }) {
+  const res = generateDNDArray(fields);
+  const [state, setState] = useState({ fields: generateDNDArray(fields) });
 
   function onDragEnd(result) {
     if (!result.destination) {
@@ -62,13 +86,13 @@ const QuoteList = React.memo(function QuoteList({ quotes }) {
       return;
     }
 
-    const quotes = reorder(
-      state.quotes,
+    const fields = reorder(
+      state.fields,
       result.source.index,
       result.destination.index
     );
 
-    setState({ quotes });
+    setState({ fields: fields });
   }
 
   return (
@@ -76,7 +100,7 @@ const QuoteList = React.memo(function QuoteList({ quotes }) {
       <Droppable droppableId="list">
         {provided => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
-            <QuoteList quotes={state.quotes} />
+            <FieldList fields={state.fields} />
             {provided.placeholder}
           </div>
         )}
@@ -84,5 +108,13 @@ const QuoteList = React.memo(function QuoteList({ quotes }) {
     </DragDropContext>
   );
 }
+
+SimpleDragAndDrop.propTypes = {
+  fields: PropTypes.array
+};
+
+SimpleDragAndDrop.defaultProps = {
+  fields: []
+};
 
 export default SimpleDragAndDrop;
