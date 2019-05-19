@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import { getFields } from "./actions";
 import styled from "@emotion/styled";
 import { FieldsProvider, FieldsContext } from "./Context";
-import {Button} from 'reactstrap';
+import { Button } from "reactstrap";
+import discordSvg from "./trulioo_logo.png";
 
 //let logo = require('./trulioo_logo.png')
 
@@ -31,9 +32,9 @@ export class App extends React.Component {
       padding: 3rem;
     `;
 
-    let btnStyle = styled.div`
-      backgroundColor: "lightblue";
-      border-color: "lightblue";
+    let HeaderContainer = styled.div`
+      display: grid;
+      grid-template-columns: 50% 50%;
     `;
 
     return (
@@ -41,7 +42,9 @@ export class App extends React.Component {
         <StyledContainer>
           <h2>🚀 Trulioo Marketplace 🚀</h2>
           <SimpleDragAndDrop fields={fields} />
-          <Button  color="info" className="btn btn-primary">Proceed to checkout</Button>
+          <Button color="info" className="btn btn-primary">
+            Proceed to checkout
+          </Button>
         </StyledContainer>
       </div>
     );
