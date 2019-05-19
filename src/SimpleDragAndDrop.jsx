@@ -52,7 +52,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   padding: "1rem",
   margin: `0 0 ${grid}px 0`,
   background: isDragging ? "lightgreen" : "",
-  border: "1px solid",
+  border: "1px solid white",
   ...draggableStyle
 });
 
@@ -131,7 +131,9 @@ class SimpleDragAndDrop extends Component {
   render() {
     let StyledContainer = styled.div`
       display: grid;
-      grid-template-columns: 50% 50%;
+      grid-template-columns: 20rem 20rem;
+      align-self: center;
+      justify-self: center;
     `;
 
     return (

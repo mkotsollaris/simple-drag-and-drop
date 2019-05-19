@@ -7,7 +7,7 @@ import { getFields } from "./actions";
 import styled from "@emotion/styled";
 import { FieldsProvider, FieldsContext } from "./Context";
 import { Button } from "reactstrap";
-import discordSvg from "./trulioo_logo.png";
+import dockerSvg from "./map_revised.gif";
 
 //let logo = require('./trulioo_logo.png')
 
@@ -30,6 +30,7 @@ export class App extends React.Component {
       display: grid;
       text-align: center;
       padding: 3rem;
+      background-image: url(${dockerSvg});
     `;
 
     let HeaderContainer = styled.div`
@@ -37,14 +38,22 @@ export class App extends React.Component {
       grid-template-columns: 50% 50%;
     `;
 
+    let StyledButton = styled.div`
+      width: 40rem;
+      align-self: center;
+      justify-self: center;
+    `;
+
     return (
       <div>
         <StyledContainer>
-          <h2>🚀 Trulioo Marketplace 🚀</h2>
+          <h2>The Trulioo Identity Marketplace 🚀</h2>
           <SimpleDragAndDrop fields={fields} />
-          <Button color="info" className="btn btn-primary">
-            Proceed to checkout
-          </Button>
+          <StyledButton>
+            <Button style={{width:"40rem"}} color="info" className="btn btn-primary">
+              Proceed to checkout
+            </Button>
+          </StyledButton>
         </StyledContainer>
       </div>
     );
