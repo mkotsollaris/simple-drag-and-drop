@@ -4,8 +4,11 @@ import { ApolloProvider } from "react-apollo";
 import SimpleDragAndDrop from "./SimpleDragAndDrop";
 import { connect } from "react-redux";
 import { getFields } from "./actions";
+import styled from "@emotion/styled";
 import { FieldsProvider, FieldsContext } from "./Context";
-//import truliooLogo from '../src/trulioo_logo.png';
+import {Button} from 'reactstrap';
+
+//let logo = require('./trulioo_logo.png')
 
 export class App extends React.Component {
   componentDidMount() {
@@ -16,23 +19,36 @@ export class App extends React.Component {
       });
     });
   }
+
   render() {
     if (this.state == null) {
       return <div>Loading...</div>;
     }
     let { fields } = this.state;
+    let StyledContainer = styled.div`
+      display: grid;
+      text-align: center;
+      padding: 3rem;
+    `;
+
+    let btnStyle = styled.div`
+      backgroundColor: "lightblue";
+      border-color: "lightblue";
+    `;
 
     return (
       <div>
-        <h2> 🚀 My Marketplace 🚀</h2>
-        <SimpleDragAndDrop fields={fields} />
+        <StyledContainer>
+          <h2>🚀 Trulioo Marketplace 🚀</h2>
+          <SimpleDragAndDrop fields={fields} />
+          <Button  color="info" className="btn btn-primary">Proceed to checkout</Button>
+        </StyledContainer>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log("@mapstate", state);
   return {
     fields: state.fields
   };
@@ -41,5 +57,3 @@ export default connect(
   mapStateToProps,
   { getFields }
 )(App);
-
-//export default connect(state => ({}))(App);
