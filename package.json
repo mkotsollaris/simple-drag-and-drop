@@ -24,6 +24,7 @@
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
     "apollo-boost": "^0.3.1",
+    "apollo-link-http": "^1.5.14",
     "axios": "^0.18.0",
     "core-js": "^2.6.1",
     "country-list": "^2.1.0",

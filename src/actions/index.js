@@ -1,6 +1,9 @@
 import axios from "axios";
 import { GET_FIELDS, SET_FIELDS } from "./types";
 import * as R from 'ramda';
+import { createHttpLink } from "apollo-link-http";
+import ApolloClient from "apollo-client";
+import { InMemoryCache } from "apollo-cache-inmemory";
 
 export const getFields = graphqlClient => async dispatch => {
   //TODO graphqlClient
@@ -15,7 +18,7 @@ export const getFields = graphqlClient => async dispatch => {
   
   let sortedFieldsByNameResult = sortByName(data);
 
-  console.log('sorted',sortedFieldsByNameResult);
+  
 
   dispatch({
     type: SET_FIELDS,

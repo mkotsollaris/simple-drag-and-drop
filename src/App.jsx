@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { render } from "react-dom";
-import { ApolloProvider } from "react-apollo";
 import SimpleDragAndDrop from "./SimpleDragAndDrop";
 import { connect } from "react-redux";
 import { getFields } from "./actions";
