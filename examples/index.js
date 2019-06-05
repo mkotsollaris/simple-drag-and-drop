@@ -20,7 +20,7 @@ const client = new ApolloClient({
   uri: "https://870m93mis4.execute-api.us-west-2.amazonaws.com/default/Test"
 });
 
-const GET_ORGANIZATION = `
+const GET_Fields = `
   {
     fields(name: "First Name") {
       name
@@ -34,8 +34,8 @@ const axiosGitHubGraphQL = axios.create({
 
 let onFetchFromAWS = () => {
   axiosGitHubGraphQL
-    .get('', { query: GET_ORGANIZATION })
-    .then(result => console.log('RESULT',result));
+    .get('', { query: GET_Fields })
+    .then(result => console.log('RESULT',result)); //TODO refactor
 };
 onFetchFromAWS();
 

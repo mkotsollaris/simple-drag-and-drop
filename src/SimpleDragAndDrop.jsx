@@ -56,25 +56,23 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   ...draggableStyle
 });
 
-const getListStyle = isDraggingOver => ({
+const getListStyle = () => ({
   background: "lightblue",
   padding: grid,
   border: "1px solid white",
-  "marginBottom": `${grid}px`,
-  "backgroundColor": "lightblue",
+  marginBottom: `${grid}px`,
+  backgroundColor: "lightblue",
   padding: `${grid}px`
 });
 
 class SimpleDragAndDrop extends Component {
   constructor(props) {
     super(props);
-    
-    console.log('props',props);
+
     this.state = {
       items: generateDNDArray(props.fields),
       selected: []
     };
-
   }
 
   /**
@@ -83,7 +81,7 @@ class SimpleDragAndDrop extends Component {
    * source arrays stored in the state.
    */
   id2List = {
-    droppable: "items",
+    droppable1: "items",
     droppable2: "selected"
   };
 
@@ -120,7 +118,7 @@ class SimpleDragAndDrop extends Component {
       );
 
       this.setState({
-        items: result.droppable,
+        items: result.droppable1,
         selected: result.droppable2
       });
     }
@@ -139,7 +137,7 @@ class SimpleDragAndDrop extends Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <StyledContainer>
-          <Droppable droppableId="droppable">
+          <Droppable droppableId="droppable1">
             {(provided, snapshot) => (
               <div
                 ref={provided.innerRef}
@@ -198,36 +196,6 @@ class SimpleDragAndDrop extends Component {
       </DragDropContext>
     );
   }
-}
-
-function Fields({ field, index }) {
-  const DraggableItem = styled.div`
-    padding: 0 0 0 2rem;
-  `;
-  const grid = 8;
-  const FieldItem = styled.div`
-    width: 200px;
-    border: 1px solid grey;
-    margin-bottom: ${grid}px;
-    background-color: lightblue;
-    padding: ${grid}px;
-  `;
-
-  return (
-    <DraggableItem>
-      <Draggable draggableId={field.id} index={index}>
-        {provided => (
-          <FieldItem
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            <h4>{field.content}</h4>
-          </FieldItem>
-        )}
-      </Draggable>
-    </DraggableItem>
-  );
 }
 
 export default SimpleDragAndDrop;

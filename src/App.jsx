@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { render } from "react-dom";
+import React from "react";
 import SimpleDragAndDrop from "./SimpleDragAndDrop";
 import { connect } from "react-redux";
 import { getFields } from "./actions";
@@ -11,6 +10,7 @@ import dockerSvg from "./map_revised.gif";
 //let logo = require('./trulioo_logo.png')
 
 export class App extends React.Component {
+  
   componentDidMount() {
     let getFieldsPromise = this.props.getFields();
     const res = getFieldsPromise.then(r => {
@@ -25,6 +25,7 @@ export class App extends React.Component {
       return <div>Loading...</div>;
     }
     let { fields } = this.state;
+    
     let StyledContainer = styled.div`
       display: grid;
       text-align: center;
