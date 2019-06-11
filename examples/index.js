@@ -16,28 +16,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 
 // https://48p1r2roz4.sse.codesandbox.io
 // https://870m93mis4.execute-api.us-west-2.amazonaws.com/default/Test
-const client = new ApolloClient({
-  uri: "https://870m93mis4.execute-api.us-west-2.amazonaws.com/default/Test"
-});
-
-const GET_Fields = `
-  {
-    fields(name: "First Name") {
-      name
-    }
-  }
-`;
-
-const axiosGitHubGraphQL = axios.create({
-  baseURL: 'https://870m93mis4.execute-api.us-west-2.amazonaws.com/default/Test'
-});
-
-let onFetchFromAWS = () => {
-  axiosGitHubGraphQL
-    .get('', { query: GET_Fields })
-    .then(result => console.log('RESULT',result)); //TODO refactor
-};
-onFetchFromAWS();
+const client = new ApolloClient();
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

@@ -1,6 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import styled from "@emotion/styled";
-import PropTypes from "prop-types";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const generateDNDArray = fields => {
@@ -11,13 +10,6 @@ const generateDNDArray = fields => {
     };
   });
 };
-
-// fake data generator
-const getItems = (count, offset = 0) =>
-  Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k + offset}`,
-    content: `item ${k + offset}`
-  }));
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
