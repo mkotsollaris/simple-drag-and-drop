@@ -12,7 +12,7 @@ export const getFields = () => async dispatch => {
 
   const GET_FIELDS = `
   {
-    fields(name: "First Name") {
+    fields{
       name
     }
   }

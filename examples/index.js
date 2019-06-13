@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { render } from "react-dom";
+import { createHttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
 import SimpleDragAndDrop from "../src/SimpleDragAndDrop";
 import ApolloClient from "apollo-boost";
 import { Provider as ReduxProvider } from "react-redux";
@@ -11,13 +13,8 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "../src/reducers";
 
-import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
 
-// https://48p1r2roz4.sse.codesandbox.io
-// https://870m93mis4.execute-api.us-west-2.amazonaws.com/default/Test
 const client = new ApolloClient();
-
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 render(
