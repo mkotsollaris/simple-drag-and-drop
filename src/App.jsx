@@ -3,7 +3,6 @@ import SimpleDragAndDrop from "./SimpleDragAndDrop";
 import { connect } from "react-redux";
 import { getFields } from "./actions";
 import styled from "@emotion/styled";
-import { FieldsProvider, FieldsContext } from "./Context";
 import { Button } from "reactstrap";
 import dockerSvg from "./map_revised.gif";
 
