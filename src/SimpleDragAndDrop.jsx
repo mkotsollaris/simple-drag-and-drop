@@ -66,7 +66,7 @@ class SimpleDragAndDrop extends Component {
       selected: []
     };
   }
-  
+
   id2List = {
     droppable1: "items",
     droppable2: "selected"
@@ -121,6 +121,28 @@ class SimpleDragAndDrop extends Component {
       justify-self: center;
     `;
 
+    if (!this.state || !this.state.items) {
+      return <div>Loading ...</div>;
+    }
+
+    const draggableElement = this.state.items.map((item, index) => (
+      <Draggable key={index} draggableId={item.id} index={index}>
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            style={getItemStyle(
+              snapshot.isDragging,
+              provided.draggableProps.style
+            )}
+          >
+            {item.content}
+          </div>
+        )}
+      </Draggable>
+    ));
+
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <StyledContainer>
@@ -130,23 +152,7 @@ class SimpleDragAndDrop extends Component {
                 ref={provided.innerRef}
                 style={getListStyle(snapshot.isDraggingOver)}
               >
-                {this.state.items.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style
-                        )}
-                      >
-                        {item.content}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
+                {draggableElement}
                 {provided.placeholder}
               </div>
             )}
