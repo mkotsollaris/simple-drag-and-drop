@@ -32,8 +32,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      # TODO add tests!
-      - run: # run tests
+      # run tests
+      - run: 
           name: test
           command: yarn test
