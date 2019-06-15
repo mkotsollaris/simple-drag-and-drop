@@ -1,9 +1,6 @@
 import axios from "axios";
 import { SET_FIELDS } from "./types";
 import * as R from "ramda";
-import ApolloClient from "apollo-boost";
-import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
 
 export const getFields = () => async dispatch => {
 
