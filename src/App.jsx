@@ -6,8 +6,6 @@ import styled from "@emotion/styled";
 import { Button } from "reactstrap";
 import dockerSvg from "./map_revised.gif";
 
-//let logo = require('./trulioo_logo.png')
-
 export class App extends React.Component {
   
   componentDidMount() {

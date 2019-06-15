@@ -66,12 +66,7 @@ class SimpleDragAndDrop extends Component {
       selected: []
     };
   }
-
-  /**
-   * A semi-generic way to handle multiple lists. Matches
-   * the IDs of the droppable container to the names of the
-   * source arrays stored in the state.
-   */
+  
   id2List = {
     droppable1: "items",
     droppable2: "selected"
