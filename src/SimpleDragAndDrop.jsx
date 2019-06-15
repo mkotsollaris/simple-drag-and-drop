@@ -128,7 +128,7 @@ class SimpleDragAndDrop extends Component {
 
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <StyledContainer> 
+        <StyledContainer>
           <Droppable droppableId="droppable1">
             {(provided, snapshot) => (
               <div

@@ -10,22 +10,15 @@ export const getFields = () => async dispatch => {
   // https://48p1r2roz4.sse.codesandbox.io
   // https://870m93mis4.execute-api.us-west-2.amazonaws.com/default/Test
 
-  const GET_FIELDS = `
-  {
-    fields{
-      name
-    }
-  }
-`;
+  
 
-  const axiosGitHubGraphQL = axios.create({
+  const endpoint = axios.create({
     baseURL:
       "https://870m93mis4.execute-api.us-west-2.amazonaws.com/default/Test"
   });
 
   let onFetchFromAWS = async () => {
-    return axiosGitHubGraphQL
-      .get("", { query: GET_FIELDS })
+    return endpoint.get()
   };
   const getFieldsPromise = await onFetchFromAWS();
   const data = getFieldsPromise.data;

@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { render } from "react-dom";
-import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
 import SimpleDragAndDrop from "../src/SimpleDragAndDrop";
 import ApolloClient from "apollo-boost";
 import { Provider as ReduxProvider } from "react-redux";
@@ -19,9 +17,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 
 render(
   <ReduxProvider store={store}>
-    <ApolloProvider client={client}>
       <App />
-    </ApolloProvider>
   </ReduxProvider>,
   document.getElementById("root")
 );
