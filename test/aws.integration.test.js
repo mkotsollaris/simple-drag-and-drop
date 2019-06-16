@@ -3,7 +3,7 @@ import axios from 'axios';
 it('endpoint works', async (done) => {
   const endpoint = 'https://870m93mis4.execute-api.us-west-2.amazonaws.com/default/Test';
   const response = await makeRequest(endpoint); 
-  expect(response).toBeTruthy();
+  expect(response).toBeFalsy();
   expect.assertions(1);
   done();
 });
