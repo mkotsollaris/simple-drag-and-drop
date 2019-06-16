@@ -40,7 +40,7 @@ export class App extends React.Component {
       align-self: center;
       justify-self: center;
     `;
-    console.log('fields',fields);
+    
     return (
       <div>
         <StyledContainer>

@@ -114,6 +114,7 @@ class SimpleDragAndDrop extends Component {
   // Normally you would want to split things out into separate components.
   // But in this example everything is just done in one place for simplicity
   render() {
+
     let StyledContainer = styled.div`
       display: grid;
       grid-template-columns: 20rem 20rem;
@@ -126,16 +127,18 @@ class SimpleDragAndDrop extends Component {
     }
 
     const draggableElement = this.state.items.map((item, index) => (
-      <Draggable key={index} draggableId={item.id} index={index}>
+      <Draggable
+        // adding a key is important!
+        key={item.id}
+        draggableId={item.id}
+        index={index}
+      >
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            style={getItemStyle(
-              snapshot.isDragging,
-              provided.draggableProps.style
-            )}
+            style={getItemStyle(snapshot.isDragging,provided.draggableProps.style)}
           >
             {item.content}
           </div>
