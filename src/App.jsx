@@ -45,7 +45,7 @@ export class App extends React.Component {
       <div>
         <StyledContainer>
           <h2>Simple Drag and Drop Container 🚀</h2>
-          {/* TODO Add <SimpleDragAndDrop fields={fields}/> */}
+          <SimpleDragAndDrop fields={fields}/>
           <StyledButton>
             <Button style={{width:"40rem"}} color="info" className="btn btn-primary">
               Proceed to checkout

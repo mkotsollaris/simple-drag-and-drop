@@ -127,8 +127,25 @@ class SimpleDragAndDrop extends Component {
       return <div>Loading ...</div>;
     }
 
-    //TODO!
-    const draggableElement = null;
+    const draggableElement = this.state.items.map((item, index) => (
+      <Draggable
+        // adding a key is important!
+        key={item.id}
+        draggableId={item.id}
+        index={index}
+      >
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+          >
+            {item.content}
+          </div>
+        )}
+      </Draggable>
+    ));
 
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
