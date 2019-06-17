@@ -40,12 +40,12 @@ export class App extends React.Component {
       align-self: center;
       justify-self: center;
     `;
-    console.log('fields',fields);
+    
     return (
       <div>
         <StyledContainer>
           <h2>Simple Drag and Drop Container 🚀</h2>
-          <SimpleDragAndDrop fields={fields}/>
+          {/* TODO Add <SimpleDragAndDrop fields={fields}/> */}
           <StyledButton>
             <Button style={{width:"40rem"}} color="info" className="btn btn-primary">
               Proceed to checkout
